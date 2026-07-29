@@ -1,7 +1,7 @@
 import React from 'react';
-import { LayoutDashboard, PlayCircle, BookOpen, BarChart3, HardDrive } from 'lucide-react';
+import { LayoutDashboard, PlayCircle, BarChart3, Settings } from 'lucide-react';
 
-export type TabType = 'dashboard' | 'logger' | 'exercises' | 'analytics' | 'backup';
+export type TabType = 'dashboard' | 'logger' | 'analytics' | 'settings';
 
 interface BottomNavProps {
   activeTab: TabType;
@@ -13,9 +13,8 @@ export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onSelectTab, is
   const tabs: { id: TabType; label: string; icon: React.ReactNode; badge?: boolean }[] = [
     { id: 'dashboard', label: 'Home', icon: <LayoutDashboard className="w-5 h-5" /> },
     { id: 'logger', label: 'Workout', icon: <PlayCircle className="w-5 h-5" />, badge: isWorkoutActive },
-    { id: 'exercises', label: 'Exercises', icon: <BookOpen className="w-5 h-5" /> },
     { id: 'analytics', label: 'Graphs', icon: <BarChart3 className="w-5 h-5" /> },
-    { id: 'backup', label: 'Backup', icon: <HardDrive className="w-5 h-5" /> },
+    { id: 'settings', label: 'Settings', icon: <Settings className="w-5 h-5" /> },
   ];
 
   return (
@@ -53,3 +52,4 @@ export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onSelectTab, is
     </nav>
   );
 };
+

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, ChevronLeft, ChevronRight, Calendar as CalendarIcon, Clock, Flame, Dumbbell, Plus, Trash2 } from 'lucide-react';
-import { AppState, WorkoutSession } from '../types';
+import { AppState, WorkoutSession, BodyPartCategory, BODY_PART_COLORS } from '../types';
+
 
 interface CalendarModalProps {
   state: AppState;
@@ -123,9 +124,19 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
                 return <div key={`empty-${idx}`} className="h-10" />;
               }
 
-              const hasWorkouts = Boolean(workoutsByDate[item.dateStr]?.length);
+              const dateWorkouts = workoutsByDate[item.dateStr] || [];
+              const hasWorkouts = dateWorkouts.length > 0;
               const isSelected = item.dateStr === selectedDateStr;
               const isToday = item.dateStr === todayStr;
+
+              // Collect unique body part categories trained on this date
+              const categoriesTrained = Array.from(
+                new Set(
+                  dateWorkouts.flatMap((w) =>
+                    w.exercises.map((e) => e.muscleGroup as BodyPartCategory)
+                  )
+                )
+              ).slice(0, 3); // Max 3 dots
 
               return (
                 <button
@@ -141,11 +152,18 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
                 >
                   <span>{item.dayNum}</span>
                   {hasWorkouts && (
-                    <span
-                      className={`w-1.5 h-1.5 rounded-full mt-0.5 ${
-                        isSelected ? 'bg-white' : 'bg-emerald-400 animate-pulse'
-                      }`}
-                    />
+                    <div className="flex items-center justify-center gap-0.5 mt-0.5">
+                      {categoriesTrained.map((cat) => {
+                        const colorInfo = BODY_PART_COLORS[cat];
+                        return (
+                          <span
+                            key={cat}
+                            className="w-1.5 h-1.5 rounded-full"
+                            style={{ backgroundColor: colorInfo ? colorInfo.color : '#3B82F6' }}
+                          />
+                        );
+                      })}
+                    </div>
                   )}
                 </button>
               );

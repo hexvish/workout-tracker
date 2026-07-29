@@ -7,7 +7,7 @@ export const PRESET_EXERCISES: Exercise[] = [
     name: 'Barbell Bench Press',
     category: 'Strength',
     muscleGroup: 'chest',
-    secondaryMuscles: ['shoulders', 'arms'],
+    secondaryMuscles: ['shoulders', 'triceps'],
     equipment: 'Barbell',
     defaultRestSeconds: 90,
     metricType: 'weight_reps',
@@ -18,7 +18,7 @@ export const PRESET_EXERCISES: Exercise[] = [
     name: 'Incline Dumbbell Press',
     category: 'Strength',
     muscleGroup: 'chest',
-    secondaryMuscles: ['shoulders', 'arms'],
+    secondaryMuscles: ['shoulders', 'triceps'],
     equipment: 'Dumbbells',
     defaultRestSeconds: 90,
     metricType: 'weight_reps',
@@ -29,7 +29,7 @@ export const PRESET_EXERCISES: Exercise[] = [
     name: 'Push-Ups',
     category: 'Bodyweight',
     muscleGroup: 'chest',
-    secondaryMuscles: ['core', 'arms'],
+    secondaryMuscles: ['abs', 'triceps'],
     equipment: 'Bodyweight',
     defaultRestSeconds: 60,
     metricType: 'reps_only',
@@ -53,18 +53,18 @@ export const PRESET_EXERCISES: Exercise[] = [
     name: 'Barbell Deadlift',
     category: 'Strength',
     muscleGroup: 'back',
-    secondaryMuscles: ['legs', 'core'],
+    secondaryMuscles: ['legs', 'abs'],
     equipment: 'Barbell',
     defaultRestSeconds: 120,
     metricType: 'weight_reps',
-    instructions: 'Stand mid-foot under barbell. Hinges at hips, grip bar, drive knees out and stand up straight pressing through heels.'
+    instructions: 'Stand mid-foot under barbell. Hinge at hips, grip bar, drive knees out and stand up straight pressing through heels.'
   },
   {
     id: 'preset-pullups',
     name: 'Overhand Pull-Ups',
     category: 'Bodyweight',
     muscleGroup: 'back',
-    secondaryMuscles: ['arms'],
+    secondaryMuscles: ['biceps'],
     equipment: 'Pull-up Bar',
     defaultRestSeconds: 90,
     metricType: 'reps_only',
@@ -75,7 +75,7 @@ export const PRESET_EXERCISES: Exercise[] = [
     name: 'Lat Pulldown',
     category: 'Strength',
     muscleGroup: 'back',
-    secondaryMuscles: ['arms'],
+    secondaryMuscles: ['biceps'],
     equipment: 'Cable Machine',
     defaultRestSeconds: 60,
     metricType: 'weight_reps',
@@ -86,11 +86,78 @@ export const PRESET_EXERCISES: Exercise[] = [
     name: 'Barbell Bent-Over Row',
     category: 'Strength',
     muscleGroup: 'back',
-    secondaryMuscles: ['arms', 'core'],
+    secondaryMuscles: ['biceps', 'abs'],
     equipment: 'Barbell',
     defaultRestSeconds: 90,
     metricType: 'weight_reps',
     instructions: 'Hinge forward at hips with flat back. Pull bar towards belly button squeezing shoulder blades together.'
+  },
+
+  // BICEPS
+  {
+    id: 'preset-bicep-curls',
+    name: 'Dumbbell Bicep Curls',
+    category: 'Strength',
+    muscleGroup: 'biceps',
+    equipment: 'Dumbbells',
+    defaultRestSeconds: 60,
+    metricType: 'weight_reps',
+    instructions: 'Keep elbows tucked into sides. Curl weights upwards while squeezing biceps at apex.'
+  },
+  {
+    id: 'preset-hammer-curls',
+    name: 'Dumbbell Hammer Curls',
+    category: 'Strength',
+    muscleGroup: 'biceps',
+    equipment: 'Dumbbells',
+    defaultRestSeconds: 60,
+    metricType: 'weight_reps',
+    instructions: 'Grip dumbbells with neutral palms facing inward. Curl towards shoulders maintaining neutral grip.'
+  },
+
+  // TRICEPS
+  {
+    id: 'preset-tricep-pushdown',
+    name: 'Cable Tricep Rope Pushdown',
+    category: 'Strength',
+    muscleGroup: 'triceps',
+    equipment: 'Cable Machine',
+    defaultRestSeconds: 60,
+    metricType: 'weight_reps',
+    instructions: 'Push rope attachment straight down until arms lock out, flaring hands slightly outwards at bottom.'
+  },
+  {
+    id: 'preset-skullcrushers',
+    name: 'EZ-Bar Skullcrushers',
+    category: 'Strength',
+    muscleGroup: 'triceps',
+    equipment: 'EZ Barbell',
+    defaultRestSeconds: 60,
+    metricType: 'weight_reps',
+    instructions: 'Lie on bench holding EZ bar. Bend elbows lowering bar towards forehead, extend arms up.'
+  },
+
+  // SHOULDERS
+  {
+    id: 'preset-overhead-press',
+    name: 'Overhead Barbell Press (OHP)',
+    category: 'Strength',
+    muscleGroup: 'shoulders',
+    secondaryMuscles: ['triceps', 'abs'],
+    equipment: 'Barbell',
+    defaultRestSeconds: 90,
+    metricType: 'weight_reps',
+    instructions: 'Rest bar on collarbone. Press bar overhead until arms lock out vertically, tucking head slightly back.'
+  },
+  {
+    id: 'preset-lateral-raises',
+    name: 'Dumbbell Lateral Raise',
+    category: 'Strength',
+    muscleGroup: 'shoulders',
+    equipment: 'Dumbbells',
+    defaultRestSeconds: 60,
+    metricType: 'weight_reps',
+    instructions: 'Raise dumbbells outwards to sides until arms are parallel to floor with soft elbows.'
   },
 
   // LEGS
@@ -99,7 +166,7 @@ export const PRESET_EXERCISES: Exercise[] = [
     name: 'Barbell Back Squat',
     category: 'Strength',
     muscleGroup: 'legs',
-    secondaryMuscles: ['core'],
+    secondaryMuscles: ['abs'],
     equipment: 'Barbell',
     defaultRestSeconds: 120,
     metricType: 'weight_reps',
@@ -126,68 +193,13 @@ export const PRESET_EXERCISES: Exercise[] = [
     metricType: 'weight_reps',
     instructions: 'Keep slight bend in knees. Hinge at hips pushing glutes backward while lowering weights along shins.'
   },
-  {
-    id: 'preset-walking-lunges',
-    name: 'Dumbbell Walking Lunges',
-    category: 'Strength',
-    muscleGroup: 'legs',
-    equipment: 'Dumbbells',
-    defaultRestSeconds: 60,
-    metricType: 'weight_reps',
-    instructions: 'Step forward landing heel to toe. Drop back knee toward floor, push off front leg to transition step.'
-  },
 
-  // SHOULDERS
-  {
-    id: 'preset-overhead-press',
-    name: 'Overhead Barbell Press (OHP)',
-    category: 'Strength',
-    muscleGroup: 'shoulders',
-    secondaryMuscles: ['arms', 'core'],
-    equipment: 'Barbell',
-    defaultRestSeconds: 90,
-    metricType: 'weight_reps',
-    instructions: 'Rest bar on collarbone. Press bar overhead until arms lock out vertically, tucking head slightly back.'
-  },
-  {
-    id: 'preset-lateral-raises',
-    name: 'Dumbbell Lateral Raise',
-    category: 'Strength',
-    muscleGroup: 'shoulders',
-    equipment: 'Dumbbells',
-    defaultRestSeconds: 60,
-    metricType: 'weight_reps',
-    instructions: 'Raise dumbbells outwards to sides until arms are parallel to floor with soft elbows.'
-  },
-
-  // ARMS
-  {
-    id: 'preset-bicep-curls',
-    name: 'Dumbbell Bicep Curls',
-    category: 'Strength',
-    muscleGroup: 'arms',
-    equipment: 'Dumbbells',
-    defaultRestSeconds: 60,
-    metricType: 'weight_reps',
-    instructions: 'Keep elbows tucked into sides. Curl weights upwards while squeezing biceps at apex.'
-  },
-  {
-    id: 'preset-tricep-pushdown',
-    name: 'Cable Tricep Rope Pushdown',
-    category: 'Strength',
-    muscleGroup: 'arms',
-    equipment: 'Cable Machine',
-    defaultRestSeconds: 60,
-    metricType: 'weight_reps',
-    instructions: 'Push rope attachment straight down until arms lock out, flaring hands slightly outwards at bottom.'
-  },
-
-  // CORE
+  // ABS
   {
     id: 'preset-plank',
     name: 'Forearm Plank',
     category: 'Bodyweight',
-    muscleGroup: 'core',
+    muscleGroup: 'abs',
     equipment: 'Bodyweight',
     defaultRestSeconds: 45,
     metricType: 'time_only',
@@ -197,32 +209,11 @@ export const PRESET_EXERCISES: Exercise[] = [
     id: 'preset-hanging-leg-raise',
     name: 'Hanging Leg Raise',
     category: 'Bodyweight',
-    muscleGroup: 'core',
+    muscleGroup: 'abs',
     equipment: 'Pull-up Bar',
     defaultRestSeconds: 60,
     metricType: 'reps_only',
     instructions: 'Hang from bar with straight arms. Raise legs up until parallel to floor using lower abdominals.'
-  },
-
-  // CARDIO
-  {
-    id: 'preset-treadmill-run',
-    name: 'Treadmill Running',
-    category: 'Cardio',
-    muscleGroup: 'cardio',
-    equipment: 'Treadmill',
-    defaultRestSeconds: 60,
-    metricType: 'distance_time',
-    instructions: 'Maintain steady pace with upright posture and landing lightly on mid-foot.'
-  },
-  {
-    id: 'preset-stationary-bike',
-    name: 'Stationary Cycling',
-    category: 'Cardio',
-    muscleGroup: 'cardio',
-    equipment: 'Stationary Bike',
-    defaultRestSeconds: 45,
-    metricType: 'distance_time',
-    instructions: 'Pedal at targeted RPM maintaining active core engagement and knee alignment.'
   }
 ];
+

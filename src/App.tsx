@@ -1,8 +1,3 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import React, { useState, useEffect } from 'react';
 import { AppState, Exercise, WorkoutSession, BodyWeightEntry } from './types';
 import { loadAppState, saveAppState } from './lib/storage';
@@ -10,9 +5,8 @@ import { HeaderBar } from './components/HeaderBar';
 import { BottomNav, TabType } from './components/BottomNav';
 import { DashboardView } from './components/DashboardView';
 import { WorkoutLoggerView } from './components/WorkoutLoggerView';
-import { ExercisesView } from './components/ExercisesView';
+import { SettingsView } from './components/SettingsView';
 import { AnalyticsView } from './components/AnalyticsView';
-import { BackupView } from './components/BackupView';
 import { CustomExerciseModal } from './components/CustomExerciseModal';
 import { RestTimerOverlay } from './components/RestTimerOverlay';
 import { CalendarModal } from './components/CalendarModal';
@@ -96,8 +90,8 @@ export default function App() {
     setShowCustomModal(false);
   };
 
-  // Log Body Weight
-  const handleLogBodyWeight = (weightKg: number) => {
+  // Log Body Metrics (Weight & Height)
+  const handleUpdateBodyMetrics = (weightKg: number, heightCm?: number) => {
     const newMetric: BodyWeightEntry = {
       id: `bw-${Date.now()}`,
       date: new Date().toISOString().split('T')[0],
@@ -106,6 +100,10 @@ export default function App() {
     setState((prev) => ({
       ...prev,
       bodyMetrics: [...prev.bodyMetrics, newMetric],
+      userProfile: {
+        ...prev.userProfile,
+        heightCm: heightCm ?? prev.userProfile?.heightCm,
+      },
     }));
   };
 
@@ -130,7 +128,7 @@ export default function App() {
 
   // Trigger Google Auth Setup
   const handleInitGoogleAuth = () => {
-    setActiveTab('backup');
+    setActiveTab('settings');
   };
 
   return (
@@ -140,7 +138,7 @@ export default function App() {
         state={state}
         onToggleDarkMode={handleToggleDarkMode}
         onToggleUnit={handleToggleUnit}
-        onOpenBackup={() => setActiveTab('backup')}
+        onOpenBackup={() => setActiveTab('settings')}
         onOpenCalendar={() => setShowCalendarModal(true)}
       />
 
@@ -151,7 +149,7 @@ export default function App() {
             state={state}
             onStartWorkout={handleStartWorkout}
             onSelectTab={setActiveTab}
-            onLogBodyWeight={handleLogBodyWeight}
+            onLogBodyWeight={(w) => handleUpdateBodyMetrics(w)}
           />
         )}
 
@@ -166,21 +164,16 @@ export default function App() {
           />
         )}
 
-        {activeTab === 'exercises' && (
-          <ExercisesView
-            customExercises={state.customExercises}
-            onOpenCustomExerciseModal={() => setShowCustomModal(true)}
-          />
-        )}
-
         {activeTab === 'analytics' && <AnalyticsView state={state} />}
 
-        {activeTab === 'backup' && (
-          <BackupView
+        {activeTab === 'settings' && (
+          <SettingsView
             state={state}
+            onOpenCustomExerciseModal={() => setShowCustomModal(true)}
             onRestoreState={handleRestoreState}
             onUpdateBackupInfo={handleUpdateBackupInfo}
             onInitGoogleAuth={handleInitGoogleAuth}
+            onUpdateMetrics={handleUpdateBodyMetrics}
           />
         )}
       </main>
@@ -220,3 +213,4 @@ export default function App() {
     </div>
   );
 }
+
