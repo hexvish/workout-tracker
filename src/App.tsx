@@ -29,8 +29,13 @@ export default function App() {
 
   // Dark mode class on body element
   useEffect(() => {
-    document.documentElement.classList.add('dark');
-    document.body.style.backgroundColor = '#0A0A0C';
+    if (state.isDarkMode) {
+      document.documentElement.classList.add('dark');
+      document.body.style.backgroundColor = '#0A0A0C';
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.body.style.backgroundColor = '#F4F4F5';
+    }
   }, [state.isDarkMode]);
 
   // Dark Mode Toggle
@@ -132,7 +137,11 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen text-[#E4E4E7] bg-[#0A0A0C] font-sans antialiased selection:bg-indigo-500 selection:text-white">
+    <div className={`min-h-screen font-sans antialiased selection:bg-indigo-500 selection:text-white transition-colors ${
+      state.isDarkMode 
+        ? 'text-[#E4E4E7] bg-[#0A0A0C]' 
+        : 'text-zinc-900 bg-zinc-100'
+    }`}>
       {/* Top Header */}
       <HeaderBar
         state={state}
