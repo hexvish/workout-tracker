@@ -84,17 +84,19 @@ export const DashboardView: React.FC<DashboardViewProps> = ({
   const categoryCounts: Record<string, number> = {};
   thisWeekWorkouts.forEach((w) => {
     w.exercises.forEach((ex) => {
-      const group = ex.muscleGroup as string;
+      const group = ex.muscleGroup;
       categoryCounts[group] = (categoryCounts[group] || 0) + ex.sets.length;
     });
   });
 
-  const pieData = Object.entries(categoryCounts).map(([cat, count]) => {
-    const colorInfo = BODY_PART_COLORS[cat as BodyPartCategory];
+  const pieData = Object.entries(categoryCounts).map(([catName, count]) => {
+    const catDef = state.categories.find(
+      (c) => c.name.toLowerCase() === catName.toLowerCase()
+    );
     return {
-      name: colorInfo ? colorInfo.name : cat,
+      name: catName,
       value: count,
-      color: colorInfo ? colorInfo.color : '#3B82F6',
+      color: catDef ? catDef.color : '#3B82F6',
     };
   });
 

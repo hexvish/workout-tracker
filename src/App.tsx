@@ -161,6 +161,12 @@ export default function App() {
             onFinishWorkout={handleFinishWorkout}
             onOpenCustomExerciseModal={() => setShowCustomModal(true)}
             onTriggerRestTimer={(secs) => setRestTimerSeconds(secs)}
+            onAddCategory={(newCat) =>
+              setState((prev) => ({
+                ...prev,
+                categories: [...prev.categories, newCat],
+              }))
+            }
           />
         )}
 

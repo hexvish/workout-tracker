@@ -133,7 +133,7 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
               const categoriesTrained = Array.from(
                 new Set(
                   dateWorkouts.flatMap((w) =>
-                    w.exercises.map((e) => e.muscleGroup as BodyPartCategory)
+                    w.exercises.map((e) => e.muscleGroup)
                   )
                 )
               ).slice(0, 3); // Max 3 dots
@@ -153,13 +153,15 @@ export const CalendarModal: React.FC<CalendarModalProps> = ({
                   <span>{item.dayNum}</span>
                   {hasWorkouts && (
                     <div className="flex items-center justify-center gap-0.5 mt-0.5">
-                      {categoriesTrained.map((cat) => {
-                        const colorInfo = BODY_PART_COLORS[cat];
+                      {categoriesTrained.map((catName) => {
+                        const catDef = state.categories.find(
+                          (c) => c.name.toLowerCase() === catName.toLowerCase()
+                        );
                         return (
                           <span
-                            key={cat}
+                            key={catName}
                             className="w-1.5 h-1.5 rounded-full"
-                            style={{ backgroundColor: colorInfo ? colorInfo.color : '#3B82F6' }}
+                            style={{ backgroundColor: catDef ? catDef.color : '#3B82F6' }}
                           />
                         );
                       })}

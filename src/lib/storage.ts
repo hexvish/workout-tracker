@@ -1,4 +1,4 @@
-import { AppState, WorkoutSession, Exercise, BodyWeightEntry } from '../types';
+import { AppState, WorkoutSession, Exercise, BodyWeightEntry, DEFAULT_CATEGORIES } from '../types';
 import { PRESET_EXERCISES } from '../data/presetExercises';
 import { INITIAL_WORKOUTS, INITIAL_BODY_METRICS } from '../data/mockHistory';
 
@@ -7,6 +7,7 @@ const STORAGE_KEY = 'workout_tracker_app_state_v1';
 export const getDefaultState = (): AppState => ({
   workouts: INITIAL_WORKOUTS,
   customExercises: [],
+  categories: DEFAULT_CATEGORIES,
   bodyMetrics: INITIAL_BODY_METRICS,
   isDarkMode: true,
   unit: 'kg',
@@ -24,6 +25,7 @@ export const loadAppState = (): AppState => {
     return {
       ...getDefaultState(),
       ...parsed,
+      categories: parsed.categories && parsed.categories.length > 0 ? parsed.categories : DEFAULT_CATEGORIES,
       workouts: parsed.workouts || INITIAL_WORKOUTS,
       bodyMetrics: parsed.bodyMetrics || INITIAL_BODY_METRICS,
     };
@@ -44,3 +46,4 @@ export const saveAppState = (state: AppState): void => {
 export const getAllExercises = (customExercises: Exercise[] = []): Exercise[] => {
   return [...PRESET_EXERCISES, ...customExercises];
 };
+
