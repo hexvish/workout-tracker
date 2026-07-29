@@ -1,0 +1,6 @@
+{
+  "name": "Workout Tracker",
+  "description": "A minimal, modern, sleek dark mode Android fitness and workout progress tracker with weekly, monthly, and yearly graph analytics, custom and preset exercise entries, wearable device integration, and Google Drive backup & restore.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
